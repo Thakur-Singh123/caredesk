@@ -32,9 +32,12 @@
                 <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required autofocus />
             </div>
 
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" required />
+           <div class="mb-3 form-password-toggle">
+                <label class="form-label" for="password">Password</label>
+                <div class="input-group input-group-merge">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="············" required />
+                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                </div>
             </div>
 
             <div class="mb-3 form-check">
@@ -49,5 +52,23 @@
             <a href="{{ route('home') }}" class="text-muted small"><i class="bx bx-arrow-back me-1"></i> Back to Welcome</a>
         </div>
     </div>
+    <script>
+    //Password visibility toggle logic
+    document.querySelectorAll('.form-password-toggle .input-group-text').forEach(function (toggleIcon) {
+        toggleIcon.addEventListener('click', function (e) {
+            const inputGroup = this.closest('.input-group');
+            const passwordInput = inputGroup.querySelector('input');
+            const icon = this.querySelector('i');
+
+            if (passwordInput.getAttribute('type') === 'password') {
+                passwordInput.setAttribute('type', 'text');
+                icon.classList.replace('bx-hide', 'bx-show');
+            } else {
+                passwordInput.setAttribute('type', 'password');
+                icon.classList.replace('bx-show', 'bx-hide');
+            }
+        });
+    });
+    </script>
 </body>
 </html>
