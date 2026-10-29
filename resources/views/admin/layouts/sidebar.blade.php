@@ -17,22 +17,6 @@
 
     <ul class="menu-inner py-1">
         
-        @if(auth()->user()->role === 'super_admin')
-
-           <li class="menu-item {{ request()->routeIs('super.dashboard') ? 'active' : '' }}">
-                <a href="{{ route('super.dashboard') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                    <div data-i18n="Analytics">Dashboard</div>
-                </a>
-            </li>
-
-            <li class="menu-item {{ request()->routeIs('super.companies*') ? 'active' : '' }}">
-                <a href="{{ route('super.companies.index') }}" class="menu-link">
-                    <i class="menu-icon tf-icons bx bx-buildings"></i>
-                    <div data-i18n="Companies">Manage Companies</div>
-                </a>
-            </li>
-        @else
             <!-- Regular Admin / Staff Menu Items -->
             <li class="menu-item {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
                 <a href="{{ route('admin.dashboard') }}" class="menu-link">
@@ -52,8 +36,5 @@
                     <div data-i18n="Policies">Import Policies</div>
                 </a>
             </li>
-        @endif
-
-
     </ul>
 </aside>

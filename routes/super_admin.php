@@ -20,10 +20,13 @@ Route::prefix('super-admin')->name('super.')->group(function () {
             return view('super-admin.dashboard');
         })->name('dashboard');
 
+        //Profile
         Route::get('/profile', [SuperProfileController::class, 'edit'])->name('profile');
         Route::put('/profile', [SuperProfileController::class, 'update'])->name('profile.update');
+        Route::delete('profile/image', [SuperProfileController::class, 'deleteImage'])->name('profile.image.delete');
         Route::put('/profile/password', [SuperProfileController::class, 'updatePassword'])->name('password.update');
 
+        //Company
         Route::resource('companies', CompanyController::class)->except(['create', 'show', 'edit']);
         Route::patch('companies/{company}/status', [CompanyController::class, 'toggleStatus'])->name('companies.status');
     });
