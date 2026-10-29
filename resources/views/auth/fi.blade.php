@@ -1,0 +1,53 @@
+ <!DOCTYPE html>
+<html lang="en" class="light-style" dir="ltr" data-theme="theme-default">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Inspector Login - CareDesk</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/core.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/vendor/css/theme-default.css') }}" />
+</head>
+<body class="bg-body d-flex align-items-center justify-content-center min-vh-100">
+    <div class="card p-4 shadow-lg border-top border-warning border-3" style="max-width: 400px; width: 100%;">
+        <div class="text-center mb-3">
+            <div class="avatar avatar-lg bg-label-warning rounded-circle mx-auto mb-2 d-flex align-items-center justify-content-center">
+                <i class="bx bx-map-alt fs-2"></i>
+            </div>
+            <h4 class="fw-bold text-dark mb-1">Field Inspector Login</h4>
+            <p class="text-muted small">Enter your credentials to access the FI Dashboard</p>
+        </div>
+
+        @if ($errors->any())
+            <div class="alert alert-danger py-2 px-3 small mb-3">
+                {{ $errors->first() }}
+            </div>
+        @endif
+
+        <form action="{{ route('fi.login.submit') }}" method="POST">
+            @csrf
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <input type="email" name="email" id="email" class="form-control" value="{{ old('email') }}" required autofocus />
+            </div>
+
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control" required />
+            </div>
+
+            <div class="mb-3 form-check">
+                <input type="checkbox" name="remember" class="form-check-input" id="remember">
+                <label class="form-check-label small" for="remember">Remember Me</label>
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100 text-white fw-semibold">Sign In</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="{{ route('home') }}" class="text-muted small"><i class="bx bx-arrow-back me-1"></i> Back to Welcome</a>
+        </div>
+    </div>
+</body>
+</html>
